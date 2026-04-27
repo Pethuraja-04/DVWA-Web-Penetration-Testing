@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-green: #00ff41;
+  --color-neon-cyan: #00e5ff;
+  --color-neon-purple: #bc13fe;
+  --color-neon-blue: #3b82f6;
+  --color-dark-bg: #030405;
+  --color-dark-card: #0a0c10;
+  --color-dark-border: rgba(255, 255, 255, 0.08);
+  --color-dark-surface: #0d1117;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --font-sans: "Outfit", "Inter", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #030405;
+  color: #e2e8f0;
+  font-family: "Outfit", sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(10, 12, 16, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Advanced Glows */
+.glow-primary {
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.2), 0 0 40px rgba(0, 255, 65, 0.1);
+}
+
+.text-gradient-green {
+  background: linear-gradient(to right, #00ff41, #00e5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-glow-green {
+  text-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+}
+
+/* Animations */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(0.98); }
+}
+
+@keyframes rotate-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-scanline {
+  animation: scanline 8s linear infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+.gradient-move {
+  background-size: 200% 200%;
+  animation: rotate-gradient 6s ease infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #030405;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #00ff41, #00e5ff);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00e5ff;
+}
+
+/* Typography refinements */
+h1, h2, h3, h4 {
+  letter-spacing: -0.02em;
+}
+
+.font-mono {
+  letter-spacing: 0;
+}
