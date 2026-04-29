@@ -85,7 +85,6 @@ const Gallery: React.FC<GalleryProps> = ({ title, subtitle, items, onItemClick }
           const hasSrcs = item.srcs && item.srcs.length > 0;
           const thumbSrc = item.srcs?.[0] ?? item.src;
           const imageCount = item.srcs?.length ?? (item.src ? 1 : 0);
-          const dataCount = item.data?.length ?? 0;
 
           return (
             <div

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, } from 'react';
 
 /* ─── Animated Counter Hook ─── */
 function useCounter(target: number, duration = 1400, delay = 0) {
@@ -19,11 +19,7 @@ function useCounter(target: number, duration = 1400, delay = 0) {
   return value;
 }
 
-const target = {
-  ip: "10.231.44.234",
-  ports: ["22", "80"],
-  services: ["SSH", "HTTP"],
-};
+
 
 /* ─── Animated Progress Bar ─── */
 const AnimatedBar: React.FC<{ percent: number; color: string; shadow: string; delay?: number }> = ({

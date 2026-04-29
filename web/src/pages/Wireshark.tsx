@@ -2,7 +2,6 @@ import React from 'react';
 import Gallery from '../components/Gallery';
 
 // Import actual screenshots from the folder
-import wire1 from '../../../screenshot/wireshark/Screenshot from 2026-04-26 11-52-15.png';
 // TCP Handshake
 import wireHandshake1 from '../../../screenshot/wireshark/Screenshot from 2026-04-25 12-45-10.png';
 import wireHandshake2 from '../../../screenshot/wireshark/Screenshot from 2026-04-26 12-11-46.png';
