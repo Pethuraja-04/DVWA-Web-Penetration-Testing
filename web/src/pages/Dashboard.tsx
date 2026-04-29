@@ -19,6 +19,12 @@ function useCounter(target: number, duration = 1400, delay = 0) {
   return value;
 }
 
+const target = {
+  ip: "10.231.44.234",
+  ports: ["22", "80"],
+  services: ["SSH", "HTTP"],
+};
+
 /* ─── Animated Progress Bar ─── */
 const AnimatedBar: React.FC<{ percent: number; color: string; shadow: string; delay?: number }> = ({
   percent, color, shadow, delay = 0
@@ -164,24 +170,71 @@ const Dashboard: React.FC = () => {
 
   const stats = [
     {
-      label: 'Total Scans', rawValue: '124', numericValue: 124, suffix: '',
-      icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-5c1.62-2.2 5-4 5-4"/><path d="m11 11 3 3"/></svg>,
-      color: 'text-[#00ff41]', gradient: 'from-[#00ff41]/20 to-transparent', borderColor: 'hover:border-[#00ff41]/40',
+      label: 'Hosts Discovered',
+      rawValue: '2',
+      numericValue: 2,
+      // Monitor / computer screen — represents a discovered host machine
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <line x1="8" y1="21" x2="16" y2="21" />
+          <line x1="12" y1="17" x2="12" y2="21" />
+        </svg>
+      ),
+      color: 'text-[#00ff41]',
+      gradient: 'from-[#00ff41]/20 to-transparent',
+      borderColor: 'hover:border-[#00ff41]/40',
     },
     {
-      label: 'Vulnerabilities', rawValue: '42', numericValue: 42, suffix: '',
-      icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12" y1="17" y2="17.01"/></svg>,
-      color: 'text-red-400', gradient: 'from-red-500/20 to-transparent', borderColor: 'hover:border-red-500/40',
+      label: 'Open Ports',
+      rawValue: '2',
+      numericValue: 2,
+      // Network plug / ethernet — represents open network ports
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 22V12" />
+          <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
+          <rect x="8" y="2" width="8" height="10" rx="2" />
+          <line x1="10" y1="6" x2="10" y2="2" />
+          <line x1="14" y1="6" x2="14" y2="2" />
+        </svg>
+      ),
+      color: 'text-[#00e5ff]',
+      gradient: 'from-[#00e5ff]/20 to-transparent',
+      borderColor: 'hover:border-[#00e5ff]/40',
     },
     {
-      label: 'Resolved', rawValue: '38', numericValue: 38, suffix: '',
-      icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>,
-      color: 'text-[#00ff41]', gradient: 'from-[#00ff41]/20 to-transparent', borderColor: 'hover:border-[#00ff41]/40',
+      label: 'Vulnerabilities',
+      rawValue: '4',
+      numericValue: 4,
+      // Shield with exclamation — security vulnerability warning
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <line x1="12" y1="16" x2="12.01" y2="16" />
+        </svg>
+      ),
+      color: 'text-red-400',
+      gradient: 'from-red-500/20 to-transparent',
+      borderColor: 'hover:border-red-500/40',
     },
     {
-      label: 'System Uptime', rawValue: '99.9%', numericValue: 99, suffix: '%',
-      icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
-      color: 'text-[#00e5ff]', gradient: 'from-[#00e5ff]/20 to-transparent', borderColor: 'hover:border-[#00e5ff]/40',
+      label: 'Services',
+      rawValue: '2',
+      numericValue: 2,
+      // Server rack — represents running network services
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="2" width="20" height="8" rx="2" />
+          <rect x="2" y="14" width="20" height="8" rx="2" />
+          <line x1="6" y1="6" x2="6.01" y2="6" />
+          <line x1="6" y1="18" x2="6.01" y2="18" />
+        </svg>
+      ),
+      color: 'text-yellow-400',
+      gradient: 'from-yellow-400/20 to-transparent',
+      borderColor: 'hover:border-yellow-400/40',
     },
   ];
 
@@ -193,15 +246,14 @@ const Dashboard: React.FC = () => {
   ];
 
   const severities = [
-    { label: 'Critical', count: 6,  percent: 15, color: 'bg-red-500',    shadow: 'shadow-[0_0_10px_rgba(239,68,68,0.6)]' },
-    { label: 'High',     count: 10, percent: 25, color: 'bg-orange-500', shadow: '' },
-    { label: 'Medium',   count: 17, percent: 42, color: 'bg-yellow-400', shadow: '' },
-    { label: 'Low',      count: 9,  percent: 22, color: 'bg-blue-500',   shadow: '' },
+    { label: 'Critical', count: 6, percent: 15, color: 'bg-red-500', shadow: 'shadow-[0_0_10px_rgba(239,68,68,0.6)]' },
+    { label: 'High', count: 10, percent: 25, color: 'bg-orange-500', shadow: '' },
+    { label: 'Medium', count: 17, percent: 42, color: 'bg-yellow-400', shadow: '' },
+    { label: 'Low', count: 9, percent: 22, color: 'bg-blue-500', shadow: '' },
   ];
 
   return (
-    <div className="space-y-10 w-full">
-
+<div className="space-y-10 w-full ">
       {/* ── HEADER ── */}
       <div
         className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6"
@@ -262,7 +314,7 @@ const Dashboard: React.FC = () => {
             <button className="text-xs font-mono font-bold text-slate-400 hover:text-[#00ff41] uppercase tracking-widest transition-colors flex items-center gap-2 group">
               View Logs
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-1 transition-transform">
-                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
               </svg>
             </button>
           </div>
@@ -284,7 +336,7 @@ const Dashboard: React.FC = () => {
             <h2 className="text-sm font-bold text-white uppercase tracking-widest mb-6 flex items-center justify-between">
               Severity Distribution
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-500">
-                <path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>
+                <path d="M3 3v18h18" /><path d="m19 9-5 5-4-4-3 3" />
               </svg>
             </h2>
             <div className="space-y-5">
@@ -324,6 +376,70 @@ const Dashboard: React.FC = () => {
 
         </div>
       </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+          {/* Target Info */}
+          <div className="bg-black/40 backdrop-blur-xl border border-[#00ff41]/10 rounded-2xl p-6">
+            <h2 className="text-sm font-bold text-white uppercase tracking-widest mb-4">
+              Attack Surface
+            </h2>
+
+            <div className="space-y-3 text-sm font-mono">
+              <p className="text-slate-400">
+                Target IP: <span className="text-[#00ff41]">10.231.44.234</span>
+              </p>
+
+              <p className="text-slate-400">
+                Open Ports:
+                <span className="ml-2 text-white">22 (SSH), 80 (HTTP)</span>
+              </p>
+
+              <p className="text-slate-400">
+                Services:
+                <span className="ml-2 text-white">OpenSSH 9.6p1, Apache 2.4.58</span>
+              </p>
+
+              <p className="text-slate-400">
+                OS:
+                <span className="ml-2 text-white">Linux 5.x</span>
+              </p>
+            </div>
+          </div>
+
+          {/* Vulnerability Overview */}
+          <div className="bg-black/40 backdrop-blur-xl border border-red-500/10 rounded-2xl p-6">
+            <h2 className="text-sm font-bold text-white uppercase tracking-widest mb-4">
+              Vulnerability Overview
+            </h2>
+
+            <div className="space-y-3 text-sm font-mono">
+
+              <div className="flex justify-between">
+                <span className="text-red-400">SQL Injection</span>
+                <span className="text-red-400 font-bold">Critical</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span className="text-orange-400">XSS</span>
+                <span className="text-orange-400 font-bold">High</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span className="text-red-400">Command Injection</span>
+                <span className="text-red-400 font-bold">Critical</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span className="text-orange-400">File Inclusion</span>
+                <span className="text-orange-400 font-bold">High</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
 
       {/* ── Keyframe styles ── */}
       <style>{`

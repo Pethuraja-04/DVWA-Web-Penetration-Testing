@@ -11,40 +11,89 @@ interface OWASPProps {
 }
 
 const OWASP: React.FC<OWASPProps> = ({ onItemClick }) => {
-  const owaspItems = [
-    {
-      id: 'owasp-1',
-      src: owasp1,
-      title: 'SQL Injection: Authentication Bypass',
-      description: 'Using tautology payloads to bypass login screens and gain unauthorized access.',
-      explanation: 'Payload used: \' OR \'1\'=\'1\' -- . This forces the SQL query to return true regardless of the password.',
-      tool: 'DVWA / OWASP',
-    },
-    {
-      id: 'owasp-2',
-      src: owasp2,
-      title: 'Reflected XSS: Cookie Theft',
-      description: 'Injecting malicious scripts into the web page to capture user session cookies.',
-      explanation: 'Script: <script>alert(document.cookie)</script>. This demonstrates how an attacker can hijack a session.',
-      tool: 'DVWA / OWASP',
-    },
-    {
-      id: 'owasp-3',
-      src: owasp3,
-      title: 'Command Injection: RCE',
-      description: 'Exploiting input fields to execute operating system commands on the server.',
-      explanation: 'Input: 127.0.0.1; cat /etc/passwd. The server fails to sanitize the semicolon, allowing arbitrary command execution.',
-      tool: 'DVWA / OWASP',
-    },
-    {
-      id: 'owasp-4',
-      src: undefined, // Using placeholder for File Inclusion if no screenshot found
-      title: 'Local File Inclusion (LFI)',
-      description: 'Accessing sensitive local files on the server by manipulating file path parameters.',
-      explanation: 'Path: ../../../../../etc/passwd. This allows reading any file the web server has access to.',
-      tool: 'DVWA / OWASP',
-    },
-  ];
+   const owaspItems = [
+
+  {
+    id: 'owasp-1',
+    title: 'SQL Injection: Authentication Bypass',
+    tool: 'DVWA',
+    srcs: [owasp1],
+    description: 'Bypassing login authentication using SQL injection by manipulating input fields.',
+    explanation: `
+Payload used:
+1' OR '1'=1
+
+This payload modifies the SQL query logic:
+
+SELECT * FROM users WHERE username = '' OR '1'='1';
+
+Since '1'='1' is always true, authentication is bypassed without valid credentials.
+
+Impact:
+- Unauthorized access
+- Data exposure
+- Full account compromise
+    `
+  },
+
+  {
+    id: 'owasp-2',
+    title: 'Reflected XSS: Script Injection in Input Field',
+    tool: 'DVWA',
+    srcs: [owasp3, owasp2],
+    description: 'Injecting JavaScript into input fields to execute in the browser context.',
+    explanation: `
+Payload used:
+<script>document.body.innerHTML="Hacked"</script>
+
+The input is reflected back into the page without proper sanitization,
+allowing execution of malicious JavaScript.
+
+Impact:
+- Session hijacking
+- Credential theft
+- UI defacement
+    `
+  },
+
+//   {
+//     id: 'owasp-3',
+//     title: 'Command Injection',
+//     tool: 'DVWA',
+//     srcs: [], // add when you capture screenshot
+//     description: 'Executing system commands via unsanitized input fields.',
+//     explanation: `
+// Example input:
+// 127.0.0.1; whoami
+
+// The application executes:
+// ping 127.0.0.1; whoami
+
+// Impact:
+// - Remote command execution
+// - Server compromise
+//     `
+//   },
+
+//   {
+//     id: 'owasp-4',
+//     title: 'Local File Inclusion (LFI)',
+//     tool: 'DVWA',
+//     srcs: [], // add when you capture screenshot
+//     description: 'Accessing sensitive server files by manipulating file path parameters.',
+//     explanation: `
+// Example payload:
+// ../../../../etc/passwd
+
+// This allows attackers to read sensitive files from the server.
+
+// Impact:
+// - Information disclosure
+// - Credential leakage
+//     `
+//   }
+
+];
 
   return (
     <Gallery 
